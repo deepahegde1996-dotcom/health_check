@@ -34,4 +34,4 @@ echo "Top 5 hungry memory processes :$(ps aux --sort=-pmem | head -6)" >> health
 
 echo "Top 5 hungry cpu processes :$(ps aux --sort=-pcpu | head -6)" >> health.log
 
-echo "added more lines"
+echo "added more lines to check1"
