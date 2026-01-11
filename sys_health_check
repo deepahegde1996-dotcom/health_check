@@ -22,10 +22,15 @@ echo "Disk usage :$(df -h)" >> health.log
 
 echo "number of CPU's:$(nproc)" >> health.log
 
-diskusage=$( df -h / | tail -1 | awk -F" " '{print $5}' | sed 's/%//' )
+diskusage=$( df -h / | tail -1 | awk  '{print $5}' | sed 's/%//' )
 if [ $diskusage -gt 80 ]
 then 
     echo "disk usage is greater than 80%" >> health.log
 else
     echo "disk usage is in control" >> health.log
 fi
+
+echo "Top 5 hungry memory processes :$(ps aux --sort=-pmem | head -6)" >> health.log
+
+echo "Top 5 hungry cpu processes :$(ps aux --sort=-pcpu | head -6)" >> health.log
+
