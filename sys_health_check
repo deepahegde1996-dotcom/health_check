@@ -1,12 +1,12 @@
 #!/bin/bash
 
-###############################################
+#########################################################
 #author: deepti Hegde
 #Date-11/01/2026
 #description:This script is used to monitor system health
 
 #version: 0.0.2
-##############################################
+#########################################################
 
 set -x 
 set -e
@@ -33,3 +33,5 @@ fi
 echo "Top 5 hungry memory processes :$(ps aux --sort=-pmem | head -6)" >> health.log
 
 echo "Top 5 hungry cpu processes :$(ps aux --sort=-pcpu | head -6)" >> health.log
+
+echo "added more lines"
