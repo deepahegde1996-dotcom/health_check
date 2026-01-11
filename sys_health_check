@@ -8,14 +8,18 @@
 #version: 0.0.1
 ##############################################
 
-echo "System uptime:"
-uptime
+echo "System uptime:$(uptime -p)" &>> health.log
 
-echo "Memory usage"
-free -h
+echo "Memory usage:$(free -h)" &>> health.log
 
-echo "Disk usage"
-df -h
+echo "Disk usage :$(df -h)" &>> health.log
 
-echo "number of CPU's"
-nproc
+echo "number of CPU's:$(nproc)" &>> health.log
+
+diskusage=$( df / -h | tail -1 | awk -F" " '{print $5}' | sed 's/%//' )
+if [ $diskusage -gt 80 ]
+then 
+    echo "disk uage is greater than 80%" &>> health.log
+else
+    echo "disk usage is in control" &>> health.log
+fi
